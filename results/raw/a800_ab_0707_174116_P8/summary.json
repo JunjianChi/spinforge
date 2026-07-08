@@ -1,0 +1,33 @@
+{
+  "config": {
+    "world_size": 8,
+    "device": "NVIDIA A800-SXM4-80GB",
+    "backend": "nccl",
+    "reps": 20,
+    "warmup": 4,
+    "seed": 0,
+    "torch": "2.12.1+cu130",
+    "cpu_run_disclaimer": null
+  },
+  "alpha_us_per_message": 26.098093284027872,
+  "beta_gbs": 133.57085002713117,
+  "result": {
+    "intercept_s": 0.0001826866529881951,
+    "alpha_per_message_s": 2.609809328402787e-05,
+    "beta_bytes_per_s": 133570850027.13118,
+    "samples": [
+      {
+        "wire_bytes": 14680064,
+        "wall_s": 0.00030011218041181564
+      },
+      {
+        "wire_bytes": 58720256,
+        "wall_s": 0.0006129044108092785
+      },
+      {
+        "wire_bytes": 234881024,
+        "wall_s": 0.0019430420361459255
+      }
+    ]
+  }
+}

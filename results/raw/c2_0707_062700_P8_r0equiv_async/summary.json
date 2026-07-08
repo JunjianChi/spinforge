@@ -1,0 +1,81 @@
+{
+  "config": {
+    "n": [
+      256,
+      256,
+      256
+    ],
+    "dtype": "float32",
+    "world_size": 8,
+    "device": "NVIDIA H20",
+    "backend": "nccl",
+    "reps": 20,
+    "warmup": 4,
+    "seed": 0,
+    "torch": "2.12.1+cu130",
+    "env": {
+      "hostname": "autodl-container-20d84f9474-81425a7f",
+      "python": "3.14.6",
+      "gpu": "NVIDIA H20",
+      "gpu_count": 8,
+      "capability": "9.0",
+      "cuda_runtime": "13.0",
+      "nccl": "2.29.7",
+      "driver": "580.65.06"
+    },
+    "gate": {
+      "n": [
+        8,
+        8,
+        8
+      ],
+      "rtol": 0.0001,
+      "atol": 1.0,
+      "passed": true
+    },
+    "link_bw_gbs": null,
+    "alpha_us": 0.0,
+    "use_rfft": false,
+    "schedule": "sequential",
+    "uninstrumented": true,
+    "mixed_wire": false,
+    "perturb": "none",
+    "comm_split_valid": false,
+    "cpu_run_disclaimer": null
+  },
+  "results": {
+    "fwd_adj": {
+      "wall_ms_mean": 12.571924203075469,
+      "wall_ms_std": 0.04561473667057598,
+      "wall_ms_ci95": 0.02134835390688056,
+      "wall_ms_all": [
+        12.54592975601554,
+        12.54433998838067,
+        12.548270169645548,
+        12.539970222860575,
+        12.58408883586526,
+        12.598439119756222,
+        12.55678990855813,
+        12.549730017781258,
+        12.541379779577255,
+        12.619669083505869,
+        12.56923982873559,
+        12.55401037633419,
+        12.58194912225008,
+        12.55543902516365,
+        12.74148840457201,
+        12.588730081915855,
+        12.530060019344091,
+        12.564430013298988,
+        12.561620213091373,
+        12.562910094857216
+      ],
+      "reps": 20,
+      "pack_ms": 0.0,
+      "comm_fwd_ms": 0.0,
+      "comm_bwd_ms": 0.0,
+      "n_collectives": 12,
+      "wire_MB_per_rank_per_step": 704.643072
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.so
+*.egg-info/
+.venv/
+build/
+.env
+data/
+checkpoints/
+runs/
+scratch/
+tests/test_artifacts/
+
+CLAUDE.md
+docs/
+
+# local-only experiment notes (single-GPU side quests; history keeps them, the front page stays curated)
+results/inverse_design_gate.md
+results/transport_design.md
+results/native_demag_profile.md
+results/mixed_precision_demag.md
+results/figures/transport_design.png

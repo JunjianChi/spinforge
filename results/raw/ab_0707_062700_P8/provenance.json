@@ -1,0 +1,14 @@
+{
+  "seed": 0,
+  "config": {
+    "world_size": 8,
+    "device": "NVIDIA H20",
+    "backend": "nccl",
+    "reps": 20,
+    "warmup": 4,
+    "seed": 0,
+    "torch": "2.12.1+cu130",
+    "cpu_run_disclaimer": null
+  },
+  "git_commit": ""
+}

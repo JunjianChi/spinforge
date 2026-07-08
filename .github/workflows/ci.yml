@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  cpu-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"  # exercise the declared floor, not whatever is newest
+          enable-cache: true
+      - name: Sync dependencies
+        run: uv sync --group dev --extra viz
+      - name: Lint
+        run: uv run ruff check . && uv run ruff format --check .
+      - name: Type-check
+        run: uv run mypy
+      - name: Test (CPU gate -- includes the multi-rank distributed suite on gloo ranks)
+        run: uv run pytest -m "not gpu and not multigpu" -q
+      - name: Upload failure renders (a red oracle ships its own visual evidence)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-renders
+          path: tests/test_artifacts/
+          if-no-files-found: ignore

@@ -1,0 +1,53 @@
+[project]
+name = "spinforge"
+version = "0.0.0"
+description = "Distributed-memory differentiable micromagnetics with a distributed adjoint, for gradient-based inverse design of over-one-GPU 3D magnetic devices."
+license = "Apache-2.0"
+requires-python = ">=3.12"
+dependencies = ["numpy", "scipy", "torch>=2.4"]
+
+[project.optional-dependencies]
+mpi = ["mpi4py"]
+viz = ["matplotlib"]
+
+[dependency-groups]
+dev = ["ruff", "mypy", "pytest", "pre-commit"]
+
+# Native ops build via JIT cpp_extension.load and the standalone CMake tree by design; they
+# stay out of the wheel, so the pure-Python backend is the decision, not a placeholder.
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/spinforge"]
+
+[tool.ruff]
+# ruff's default exclude list contains "dist" (as a build dir) -- which silently un-lints
+# src/spinforge/dist and tests/dist; override with the dirs we actually want excluded
+exclude = [".git", ".venv", "build", "__pycache__"]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+files = ["src", "benchmarks", "experiments", "examples"]
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib", "--strict-markers"]
+testpaths = ["tests"]
+pythonpath = ["."]  # rootdir on sys.path so spawn children can import tests.*
+# pytest's default norecursedirs includes "dist" (the conventional build-output dir), which would
+# silently skip our tests/dist/ -- the distributed suite, the core of the project. Keep the sensible
+# defaults but drop "dist" so it is collected on a bare `pytest` run.
+norecursedirs = ["*.egg", ".*", "_darcs", "build", "CVS", "node_modules", "venv", "{arch}"]
+markers = [
+  "gpu: needs a CUDA device",
+  "slow: long / hi-fi",
+  "dist: multi-rank spawn tests (gloo on CPU; NCCL on a GPU node)",
+  "multigpu: needs a real multi-GPU node (CUDA-aware MPI, mpirun)",
+]

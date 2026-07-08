@@ -1,0 +1,48 @@
+{
+  "seed": 0,
+  "config": {
+    "n": [
+      256,
+      256,
+      256
+    ],
+    "dtype": "float32",
+    "world_size": 8,
+    "device": "NVIDIA A800-SXM4-80GB",
+    "backend": "nccl",
+    "reps": 20,
+    "warmup": 4,
+    "seed": 0,
+    "torch": "2.12.1+cu130",
+    "env": {
+      "hostname": "autodl-container-m03psznatj-a77cd6ab",
+      "python": "3.14.6",
+      "gpu": "NVIDIA A800-SXM4-80GB",
+      "gpu_count": 8,
+      "capability": "8.0",
+      "cuda_runtime": "13.0",
+      "nccl": "2.29.7",
+      "driver": "580.126.09"
+    },
+    "gate": {
+      "n": [
+        8,
+        8,
+        8
+      ],
+      "rtol": 0.0001,
+      "atol": 1.0,
+      "passed": true
+    },
+    "link_bw_gbs": null,
+    "alpha_us": 0.0,
+    "use_rfft": false,
+    "schedule": "sequential",
+    "uninstrumented": true,
+    "mixed_wire": false,
+    "perturb": "none",
+    "comm_split_valid": false,
+    "cpu_run_disclaimer": null
+  },
+  "git_commit": ""
+}

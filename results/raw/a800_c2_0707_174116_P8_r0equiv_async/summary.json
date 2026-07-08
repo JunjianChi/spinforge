@@ -1,0 +1,81 @@
+{
+  "config": {
+    "n": [
+      256,
+      256,
+      256
+    ],
+    "dtype": "float32",
+    "world_size": 8,
+    "device": "NVIDIA A800-SXM4-80GB",
+    "backend": "nccl",
+    "reps": 20,
+    "warmup": 4,
+    "seed": 0,
+    "torch": "2.12.1+cu130",
+    "env": {
+      "hostname": "autodl-container-m03psznatj-a77cd6ab",
+      "python": "3.14.6",
+      "gpu": "NVIDIA A800-SXM4-80GB",
+      "gpu_count": 8,
+      "capability": "8.0",
+      "cuda_runtime": "13.0",
+      "nccl": "2.29.7",
+      "driver": "580.126.09"
+    },
+    "gate": {
+      "n": [
+        8,
+        8,
+        8
+      ],
+      "rtol": 0.0001,
+      "atol": 1.0,
+      "passed": true
+    },
+    "link_bw_gbs": null,
+    "alpha_us": 0.0,
+    "use_rfft": false,
+    "schedule": "sequential",
+    "uninstrumented": true,
+    "mixed_wire": false,
+    "perturb": "none",
+    "comm_split_valid": false,
+    "cpu_run_disclaimer": null
+  },
+  "results": {
+    "fwd_adj": {
+      "wall_ms_mean": 23.710260447114706,
+      "wall_ms_std": 0.06957450480821255,
+      "wall_ms_ci95": 0.03256187056977544,
+      "wall_ms_all": [
+        23.69944006204605,
+        23.69023486971855,
+        23.97730015218258,
+        23.742567747831345,
+        23.72012659907341,
+        23.72673898935318,
+        23.614248260855675,
+        23.656152188777924,
+        23.68278242647648,
+        23.69687147438526,
+        23.695513606071472,
+        23.679407313466072,
+        23.716529831290245,
+        23.69273453950882,
+        23.675469681620598,
+        23.692579939961433,
+        23.75025302171707,
+        23.69018830358982,
+        23.687148466706276,
+        23.718921467661858
+      ],
+      "reps": 20,
+      "pack_ms": 0.0,
+      "comm_fwd_ms": 0.0,
+      "comm_bwd_ms": 0.0,
+      "n_collectives": 12,
+      "wire_MB_per_rank_per_step": 704.643072
+    }
+  }
+}
