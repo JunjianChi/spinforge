@@ -89,8 +89,8 @@ uv run pytest -m "not gpu and not multigpu"
 
 ## Benchmarks
 
-The benchmark times the distributed forward+adjoint step against the same operator on a correct,
-GPU-direct NCCL baseline with naive communication scheduling. It runs on two GPU
+The benchmark times the distributed forward+adjoint step against the same operator on the same
+eight GPUs, with correct GPU-direct NCCL communication but naive scheduling. It runs on two GPU
 generations, Ampere and Hopper, and the speedup reproduces on both. Conditions:
 
 - 8x NVIDIA A800-SXM4-80GB with NVLink, and 8x NVIDIA H20 with NVSwitch
@@ -112,8 +112,9 @@ doubling of GPUs.
   <img src="results/figures/a800_true_speedup.png" width="70%" alt="speedup vs one GPU on 8x A800"/>
 </p>
 
-*Forward+adjoint speedup vs the full-complex single-GPU reference, 8x A800 at 256^3. The optimized
-rows cross the ideal line because rfft is an algorithmic gain the reference lacks.*
+*Forward+adjoint speedup vs the full-complex single-GPU reference, 8x A800 at 256^3: 5.2x naive,
+9.2x with the optimizations on 8 GPUs. The optimized rows cross the ideal line because rfft is an
+algorithmic gain the reference lacks.*
 
 The single-GPU working set is 775.7 bytes per cell. One 80 GB GPU fails at 544^3 and eight GPUs
 run the same grid at 251 ms per step. The adjoint costs 2.05x the forward step on the H20 and
